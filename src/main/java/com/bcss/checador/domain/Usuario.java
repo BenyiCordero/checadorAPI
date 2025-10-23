@@ -1,5 +1,6 @@
 package com.bcss.checador.domain;
 
+import com.bcss.checador.auth.Rol;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idUsuario;
     @Column(nullable = false, length = 50)
     private String nombre;
     @Column(nullable = false, length = 50)
@@ -29,7 +30,8 @@ public class Usuario {
     private String email;
     @Column(nullable = false)
     private String password;
-    @OneToMany(mappedBy = "usuario")
-    private List<Token> tokens;
+    @Enumerated
+    @Column(nullable = false)
+    private Rol rol;
 
 }
