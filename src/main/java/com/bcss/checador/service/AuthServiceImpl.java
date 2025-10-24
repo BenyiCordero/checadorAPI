@@ -80,7 +80,7 @@ public class AuthServiceImpl implements AuthService {
         tokenJwt.setIsExpired(false);
         tokenJwt.setIsRevoked(false);
         tokenJwt.setTokenType(Token.TokenType.BEARER);
-        tokenJwt.setUsuario(usuario);
+        tokenJwt.setUser(usuario);
         jwtService.saveToken(tokenJwt);
     }
 
