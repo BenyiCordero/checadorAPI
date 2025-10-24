@@ -53,6 +53,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/qr").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
