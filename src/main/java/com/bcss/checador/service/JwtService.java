@@ -1,9 +1,11 @@
 package com.bcss.checador.service;
 
+import com.bcss.checador.domain.Token;
 import com.bcss.checador.domain.Usuario;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.Optional;
 
 public interface JwtService {
     String extractUsername(String token);
@@ -14,4 +16,5 @@ public interface JwtService {
     boolean isTokenExpired(String token);
     Date extractExpiration(String token);
     SecretKey getSignInKey();
+    Optional<Token> findByToken(String token);
 }
