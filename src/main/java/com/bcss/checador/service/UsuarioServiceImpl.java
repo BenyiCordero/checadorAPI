@@ -4,6 +4,7 @@ import com.bcss.checador.domain.Usuario;
 import com.bcss.checador.exception.EmailRepetidoException;
 import com.bcss.checador.exception.UsuarioNoEncontradoException;
 import com.bcss.checador.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @Transactional
     @Override
     public Usuario saveIfNotExist(Usuario usuario) {
         if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) throw new EmailRepetidoException();
