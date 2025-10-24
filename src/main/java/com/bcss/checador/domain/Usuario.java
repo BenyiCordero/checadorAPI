@@ -30,6 +30,8 @@ public class Usuario {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column (nullable = true)
+    private Integer horasSemana;
     @Enumerated
     @Column(nullable = false)
     private Rol rol;
