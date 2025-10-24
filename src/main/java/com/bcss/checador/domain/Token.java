@@ -28,7 +28,7 @@ public class Token {
     private TokenType tokenType = TokenType.BEARER;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    private Usuario user;
 
     public enum TokenType{
         BEARER
