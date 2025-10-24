@@ -19,7 +19,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario saveIfNotExist(Usuario usuario) {
-        if(findByEmail(usuario.getEmail()).isPresent()) throw new EmailRepetidoException();
+        if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) throw new EmailRepetidoException();
         return usuarioRepository.save(usuario);
     }
 
