@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -64,7 +65,7 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public boolean isTokenValid(String token, Usuario usuario) {
-        final String username =extractUsername(token);
+        String username =extractUsername(token);
         return (username.equals(usuario.getEmail()) && !isTokenExpired(token));
     }
 
@@ -93,5 +94,20 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public Optional<Token> findByToken(String token) {
         return tokenRepository.findByToken(token);
+    }
+
+    @Override
+    public void saveToken(Token token) {
+        tokenRepository.save(token);
+    }
+
+    @Override
+    public List<Token> findAllTokensByUsuario(Usuario usuario) {
+        return tokenRepository.findByUsuario(usuario);
+    }
+
+    @Override
+    public void deleteTokens(List<Token> tokens) {
+        tokenRepository.deleteAll(tokens);
     }
 }
