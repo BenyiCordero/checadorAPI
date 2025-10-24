@@ -1,6 +1,7 @@
 package com.bcss.checador.service;
 
 import com.bcss.checador.domain.CodigoQR;
+import com.bcss.checador.exception.QrCodeNotFoundException;
 import com.bcss.checador.exception.ReadingQrException;
 import com.bcss.checador.repository.CodigoQrRepository;
 import com.google.zxing.*;
@@ -74,6 +75,19 @@ public class CodigoQrServiceImpl implements CodigoQrService {
             return resultado.getText();
         } catch(ReadingQrException | NotFoundException e){
             throw new ReadingQrException();
+        }
+    }
+
+    @Override
+    public void deleteCodigo(Sucursal sucursal) {
+        try{
+            CodigoQR codigoQR = codigoQrRepository.findBySucursal(sucursal);
+            if(codigoQR == null){
+                throw new QrCodeNotFoundException();
+            }
+            codigoQrRepository.deleteBySucursal(sucursal);
+        } catch(QrCodeNotFoundException e){
+            throw new QrCodeNotFoundException();
         }
     }
 

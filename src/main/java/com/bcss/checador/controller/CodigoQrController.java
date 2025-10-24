@@ -4,10 +4,7 @@ import com.bcss.checador.service.CodigoQrService;
 import com.google.zxing.WriterException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -22,9 +19,14 @@ public class CodigoQrController {
     }
 
     @PostMapping
-    public ResponseEntity<?> generateQr(Sucursal sucursal) throws IOException, WriterException {
+    public ResponseEntity<?> generateQr(@RequestBody Sucursal sucursal) throws IOException, WriterException {
         codigoQrService.generate(sucursal);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @DeleteMapping
+    public ResponseEntity<?> deleteQr(@RequestBody Sucursal sucursal){
+        codigoQrService.deleteCodigo(sucursal);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

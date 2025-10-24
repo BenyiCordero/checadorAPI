@@ -9,4 +9,5 @@ import java.io.IOException;
 public interface CodigoQrService {
     void generate(Sucursal sucursal) throws IOException, WriterException;
     String readQr(MultipartFile file) throws IOException;
+    void deleteCodigo(Sucursal sucursal);
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CodigoQrRepository extends JpaRepository<CodigoQR, Integer> {
+    void deleteBySucursal(Sucursal sucursal);
 }
