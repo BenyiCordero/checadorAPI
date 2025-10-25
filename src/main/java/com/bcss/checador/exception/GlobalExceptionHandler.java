@@ -14,6 +14,22 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(UsuarioNoEncontradoException.class)
     public ResponseEntity<Object> handleUsuarioNoEncontradoException(UsuarioNoEncontradoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+    @ExceptionHandler(CredencialesInvalidasException.class)
+    public ResponseEntity<Object> CredencialesInvalidasException(CredencialesInvalidasException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(FormatoTokenInvalidoException.class)
+    public ResponseEntity<Object> handleFormatoTokenInvalidoException(FormatoTokenInvalidoException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(ReadingQrException.class)
+    public ResponseEntity<Object> handleReadingQrException(ReadingQrException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(QrCodeNotFoundException.class)
+    public ResponseEntity<Object> handleQrCodeNotFoundException(QrCodeNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

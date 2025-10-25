@@ -51,6 +51,7 @@ public class AuthServiceImpl implements AuthService {
         return new TokenResponse(token, refreshToken);
     }
 
+    @Transactional
     @Override
     public TokenResponse login(AuthRequest authRequest) {
         try{
@@ -71,6 +72,7 @@ public class AuthServiceImpl implements AuthService {
         return new TokenResponse(accessToken, refreshToken);
     }
 
+    @Transactional
     @Override
     public void saveUserToken(Usuario usuario, String token) {
         Token tokenJwt = new Token();
@@ -78,7 +80,7 @@ public class AuthServiceImpl implements AuthService {
         tokenJwt.setIsExpired(false);
         tokenJwt.setIsRevoked(false);
         tokenJwt.setTokenType(Token.TokenType.BEARER);
-        tokenJwt.setUsuario(usuario);
+        tokenJwt.setUser(usuario);
         jwtService.saveToken(tokenJwt);
     }
 

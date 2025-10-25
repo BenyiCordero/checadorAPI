@@ -103,7 +103,7 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public List<Token> findAllTokensByUsuario(Usuario usuario) {
-        return tokenRepository.findByUsuario(usuario);
+        return tokenRepository.findByUser(usuario);
     }
 
     @Override
